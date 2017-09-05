@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MapIntent</string>
+    <string name="info_text">Anna sijainti (lat, lng)</string>
+    <string name="lat_text">Leveys</string>
+    <string name="lng_text">Pituus</string>
+    <string name="button_text">Näytä kartalla</string>
+    <string name="error_text">Jokin meni vikaan</string>
+</resources>

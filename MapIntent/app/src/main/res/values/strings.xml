@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MapIntent</string>
+    <string name="info_text">Give a location (lat, lng)</string>
+    <string name="lat_text">Latitude</string>
+    <string name="lng_text">Longitude</string>
+    <string name="button_text">Show a Map</string>
+    <string name="error_text">Something went wrong</string>
+</resources>
