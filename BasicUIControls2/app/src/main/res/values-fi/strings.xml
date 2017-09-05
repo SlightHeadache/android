@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BasicUIControls2</string>
+    <string name="login_text">Tunnus:</string>
+    <string name="login_hint">Käyttäjänimi</string>
+    <string name="password_text">Salasana:</string>
+    <string name="password_hint">Salasana</string>
+    <string name="login_button">Kirjaudu</string>
+</resources>

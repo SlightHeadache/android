@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BasicUIControls1</string>
+    <string name="meatballs_text">Lihapullia</string>
+    <string name="chicken_text">Kanaa</string>
+    <string name="fish_text">Kalaa</string>
+    <string name="steak_text">Pihviä</string>
+    <string name="carrots_text">Porkkanoita</string>
+    <string name="button_text">Valitse</string>
+</resources>
