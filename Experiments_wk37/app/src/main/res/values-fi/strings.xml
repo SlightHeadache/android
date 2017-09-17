@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">ProHeater</string>
+    <string name="title_text">Tervetuloa ProHeateriin</string>
+    <string name="button_text">Muuta lämpötilaa!</string>
+    <string name="display_temperature">Tämänhetkinen lämpötila</string>
+    <string name="dialog_title">Aseta uusi lämpötila</string>
+    <string name="dialog_positive">OK!</string>
+    <string name="dialog_negative">Peruuta</string>
+    <string name="input_error">Invalidi syöte!</string>
+    <string name="heat_changed">Uusi lämpötila</string>
+    <string name="heat_unchanged">Lämpötilaa ei muutettu</string>
+    <string name="notification">Tämänhetkinen lämpötila on</string>
+    <string name="menu_action">Toast!</string>
+</resources>

@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">ProHeater</string>
+    <string name="title_text">Welcome to ProHeater</string>
+    <string name="button_text">Change temperature!</string>
+    <string name="display_temperature">Current temperature</string>
+    <string name="dialog_title">Enter new temperature</string>
+    <string name="dialog_positive">OK!</string>
+    <string name="dialog_negative">Cancel</string>
+    <string name="input_error">Invalid input!</string>
+    <string name="heat_changed">New temperature</string>
+    <string name="heat_unchanged">Temperature was not changed</string>
+    <string name="notification">Current temperature is</string>
+    <string name="menu_action">Toast!</string>
+</resources>
