@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
     // progress bar object
     private ProgressBar progressBar;
     // example image's path (change to your own if needed...)
-    private final String PATH = "http://ptm.fi/coursesNew/Android/exercises/imageswitcher/images/";
+    private final String PATH = "http://student.labranet.jamk.fi/~mapas/img/";
     // example image names (change to your own if needed...)
-    private String[] images = {"image01.png","image02.png","image03.png"};
+    private String[] images = {"android2.jpg","mobiledevelopment2.jpg","mobileproject2.jpg"};
     // which image is now visible
     private int imageIndex;
     // async task to load a new image
