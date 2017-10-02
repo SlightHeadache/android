@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         //mediaPath = Environment.getExternalStoragePublicDirectory(MEDIA_SHARED).getPath();
         mediaPath = "/storage/FD76-11FB/moto g muistikortti/Känny/Musaa/";  // On my phone, none of the other mediaPaths worked properly, I think I have a bit messy file system set ups on my phone, idk. This hard-coded path works, though
         //mediaPath = Environment.getExternalStorageDirectory().getPath() + "/Music/";
+        //mediaPath = Environment.getExternalStorageDirectory().getPath();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
