@@ -65,8 +65,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
 
-        FetchDataTask task = new FetchDataTask();
-        task.execute("http://student.labranet.jamk.fi/~K1756/junk/otto.json");
         checkPermissions();
     }
 
@@ -89,7 +87,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             case REQUEST_LOCATION:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // accepted, start getting location information
-                    mLocationPermissionGranted = true;
                     start();
                 } else {
                     // denied
@@ -103,7 +100,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void start()
     {
+        mLocationPermissionGranted = true;
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
+        FetchDataTask task = new FetchDataTask();
+        task.execute("http://student.labranet.jamk.fi/~K1756/junk/otto.json");
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -125,21 +126,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Default camera position, if current location can't be found
         try {
-            mMap.setMyLocationEnabled(true);
-            mFusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                @Override
-                public void onSuccess(Location location) {
-                    if (location != null) {
-                        double lat = location.getLatitude();
-                        double lon = location.getLongitude();
-                        LatLng temp = new LatLng(lat, lon);
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(temp, 14));
+            if (mLocationPermissionGranted)
+            {
+                mMap.setMyLocationEnabled(true);
+                mFusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        if (location != null) {
+                            double lat = location.getLatitude();
+                            double lon = location.getLongitude();
+                            LatLng temp = new LatLng(lat, lon);
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(temp, 14));
+                        }
+                        else {
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mDefaultLocation, 14));
+                        }
                     }
-                    else {
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mDefaultLocation, 14));
-                    }
-                }
-            });
+                });
+            }
+
+            else {
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mDefaultLocation, 14));
+            }
+
             mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                 @Override
                 public boolean onMarkerClick(Marker marker) {
@@ -251,11 +260,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private class FetchDistanceTask extends AsyncTask<LatLng, Void, JSONObject> {
+
+        @Override
+        protected void onPreExecute() {
+            getDeviceLocation();
+        }
+
         @Override
         protected JSONObject doInBackground(LatLng... positions) {
             HttpsURLConnection urlConnection = null;
             JSONObject jsonObject = null;
-            getDeviceLocation();
             try {
                 LatLng pos = positions[0];
                 Log.e("POS", pos.toString());
@@ -337,22 +351,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         */
         try {
-            mMap.setMyLocationEnabled(true);
-            mFusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                @Override
-                public void onSuccess(Location location) {
-                    if (location != null) {
-                        double lat = location.getLatitude();
-                        double lon = location.getLongitude();
-                        LatLng temp = new LatLng(lat, lon);
-                        setPosition(temp);
+            if (mLocationPermissionGranted)
+            {
+                mMap.setMyLocationEnabled(true);
+                mFusedLocationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        if (location != null) {
+                            double lat = location.getLatitude();
+                            double lon = location.getLongitude();
+                            LatLng temp = new LatLng(lat, lon);
+                            setPosition(temp);
+                        }
+                        else {
+                            Log.d("Null!", "Current location is null. Using defaults.");
+                            setPosition(mDefaultLocation);
+                        }
                     }
-                    else {
-                        Log.d("Null!", "Current location is null. Using defaults.");
-                        setPosition(mDefaultLocation);
-                    }
-                }
-            });
+                });
+            }
+
+            else {
+                Log.d("Null!", "Current location is null. Using defaults.");
+                setPosition(mDefaultLocation);
+            }
+
         }
         catch (SecurityException e) {
             Log.e("Security Exception", "Could not use fused location client");
