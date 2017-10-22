@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Golf_Course_Wishlist</string>
+    <string name="app_name">Golf Course Wishlist</string>
+    <string name="menu_grid">Show as grid</string>
 </resources>
